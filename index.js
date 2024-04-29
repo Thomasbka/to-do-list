@@ -11,15 +11,21 @@ document.addEventListener('DOMContentLoaded', function() {
     var todoRow = document.createElement('div');
     todoRow.setAttribute('class', 'row');
 
+    var h5 = document.createElement('h5');
+    h5.setAttribute('class', 'col-xs-8');
+    h5.innerHTML = todoInput.value;
+
     var successButton = document.createElement('button');
     successButton.setAttribute('class', 'btn btn-success');
-
-    successButton.innerHTML = "Done";
-
+    successButton.innerHTML = "DONE";
     successButton.onclick = function() {
-      var textElement = this.parentNode.querySelector('p');
-      textElement.classList.toggle('.strike');
-    }
+      var textElement = this.parentNode.querySelector('h5');
+      if (textElement) {
+        textElement.classList.toggle('strike');
+      } else {
+        console.log('Text eleent not found.');
+      }
+    };
   
     var removeButton = document.createElement('button');
     removeButton.setAttribute('class','btn btn-danger remove-button');
@@ -32,12 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
       todoList.removeChild(child);
     };
   
-    var h5 = document.createElement('h5');
-
-    h5.setAttribute('class', 'col-xs-8');
-
-    h5.innerHTML = todoInput.value;
-
     todoRow.appendChild(h5);
     todoRow.appendChild(successButton);
     todoRow.appendChild(removeButton);
